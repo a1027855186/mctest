@@ -1,0 +1,158 @@
+extends layout
+
+block content
+  div#homepage(data-role="page")
+    div(data-role="header")
+      h1= "问卷调查系统"
+      div(data-role="navbar")
+        ul
+          li
+            a.ui-btn-active(href="#homepage", data-icon="home")
+              | 首页
+          li
+            a(href="#loginfo", data-icon="info")
+              | 用户
+          li
+            a(href="#test", data-icon="star")
+              | 测试
+    div(data-role="content")
+      p="...."
+
+    div(data-role="footer")
+      h1="@MadCage"
+
+  div#loginfo(data-role="page")
+    div(data-role="header")
+      a(href="#homepage", data-role="button", data-icon="arrow-l")
+        | 返回
+      h1="用户账户"
+
+    div(data-role="content")
+      p="请先登陆再进行后续操作"
+        a(href="#login", data-rel="dialog", data-role="button")
+          | 登录
+        a(href="#reg", data-role="button")
+          | 注册
+        a(href="#personinfo", data-role="button")
+          | 个人信息
+
+    div(data-role="footer")
+      h1="@MadCage"
+
+
+  div#login(data-role="page")
+    div(data-role="header")
+      h1="登录"
+
+    div(data-role="content")
+      form(method="post", action="demoform.asp")
+        label(for="id") 用户名：
+        input#id(type="text", name="id")
+        label(for="password") 密码：
+        input#password(type="password", name="password")
+        div(data-role="fieldcontain")
+          label(for="switch") 自动登录
+          select#switch(name="switch", data-role="slider")
+            option(value="on") On
+            option(value="off", selected="") Off
+        input(type="submit", data-inline="true", value="登录")
+
+    div(data-role="footer")
+      h1="@MadCage"
+
+
+  div#reg(data-role="page")
+    div(data-role="header")
+      a(href="#loginfo", data-role="button", data-icon="arrow-l")
+        | 返回
+      h1=注册
+
+    div(data-role="content")
+      form(method="post", action="demofom.asp")
+        p="基本信息："
+          div(data-role="fieldcontain")
+            label(for="id") 帐号：
+            input#id(type="text", name="id")
+            label(for="name") 昵称：
+            input#name(type="text", name="name")
+            label(for="password") 密码：
+            input#password(type="password", name="passwod")
+        p="联系方式："
+          div(data-role="fieldcontain")
+            label(for="e-mail") 电子邮箱：
+            input#e-mail(type="text", name="e-mail")
+            label(for="phone") 手机：
+            input#phone(type="number", name="phone")
+          input(type="submit", data-inline="true", value="提交")
+
+    div(data-role="footer")
+      h1="@MadCage"
+
+
+  div#personinfo(data-role="page")
+    div(data-role="header")
+      a(href="#loginfo", data-role="button", data-icon="arrow-l")
+        | 返回
+      h1="个人资料"
+
+    div(data-role="content")
+      p="....."
+
+    div(data-role="footer")
+      h1="@MadCage"
+
+
+  div#test(data-role="page")
+    div(data-role="header")
+      a(href="#homepage", data-role="button", data-icon="arrow-l")
+        | 返回
+      h1="问卷测试"
+
+    div(data-role="content")
+      div(data-role="navbar")
+        ul
+          li
+            a(href="#test01", data-icon="plus")
+              | 查看问卷
+          li
+            a(href="#test02", data-icon="info")
+              | 查询结果
+          li
+            a(href="#test03", data-icon="star")
+              | 开始测评
+
+    div(data-role="footer")
+      h1="@MadCage"
+
+
+  div#test01(data-role="page")
+    div(data-role="header")
+      a(href="#test", data-role="button", data-icon="arrow-l")
+        | 返回
+      h1="调查问卷"
+
+    div(data-role="content")
+      h2="问卷列表："
+      ol(data-role="listview", data-inset="true", id="questionlist")
+        - for(var index=0; index<question.length; index++){
+          li
+            a(href="#questionview", id=question[index].id)
+              h3=question[index].title
+              p=question[index].content
+        - }
+
+    div(data-role="footer")
+      h1="@MadCage"
+
+
+  div#questionview(data-role="page")
+    div(data-role="header", data-theme="b")
+      a(data-rel="back", data-icon="arrow-l", data-derection="reverse") 返回
+      h1="#qtitle"
+
+    div(data-role="content")
+      p="#qcontent"
+
+    div(data-role="footer")
+      h1="@MadCage"
+
